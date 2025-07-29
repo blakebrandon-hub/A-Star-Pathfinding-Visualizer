@@ -1,6 +1,7 @@
 import pygame
 import sys
 import time
+import heapq
 
 WIDTH = 600
 ROWS = 20
@@ -98,7 +99,6 @@ def reconstruct_path(came_from, current, draw):
         draw()
 
 def algorithm(draw, grid, start, end):
-    import heapq
     count = 0
     open_set = []
     heapq.heappush(open_set, (0, count, start))
