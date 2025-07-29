@@ -81,7 +81,6 @@ class Node:
         if self.col > 0 and not grid[self.row][self.col - 1].is_barrier():
             self.neighbors.append(grid[self.row][self.col - 1])
 
-
 def h(p1, p2):
     x1, y1 = p1
     x2, y2 = p2
@@ -93,12 +92,10 @@ def reconstruct_path(came_from, current, draw):
         current = came_from[current]
         steps.append(current)
 
-    # Skip the first one (the neighbor of end)
     for node in steps[1:]:
         if not node.is_start() and not node.is_end():
             node.make_path()
         draw()
-
 
 def algorithm(draw, grid, start, end):
     import heapq
@@ -132,10 +129,8 @@ def algorithm(draw, grid, start, end):
                 count += 1
                 heapq.heappush(open_set, (f_score[neighbor], count, neighbor))
                 open_set_hash.add(neighbor)
-
-
+                
     return False
-
 
 def make_grid():
     return [[Node(i, j) for j in range(ROWS)] for i in range(ROWS)]
